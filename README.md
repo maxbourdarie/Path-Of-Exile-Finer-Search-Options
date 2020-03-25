@@ -11,7 +11,7 @@ It extends what the "Filter by item stats" button does but allows finer control 
 
 ## After installing, by hovering on an item, you can : 
 
-* easily see what mods are already present in your "and" filter groups thanks to a new green backdrop
+* easily see what mods are already present in your "and" filter groups (highlighted in green)
 ![](https://github.com/maxbourdarie/Path-Of-Exile-Finer-Search-Options/blob/master/images/finer-search-filtered-stat.png)
 * access two new buttons "+" and "-" by hovering over any mod in the list
   * clicking "+" adds the mod to the first (non default) "and" filter group in your search. If none exists, it creates it
