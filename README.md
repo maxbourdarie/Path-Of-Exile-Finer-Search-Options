@@ -20,4 +20,4 @@ It extends what the "Filter by item stats" button does but allows finer control 
 * automatically refresh your search when you add/remove a filter by clicking a button
 
 ## video showcase 
-![](https://github.com/maxbourdarie/Path-Of-Exile-Finer-Search-Options/blob/master/images/ezgif.com-video-to-gif.gif)
+![](https://github.com/maxbourdarie/Path-Of-Exile-Finer-Search-Options/blob/master/images/Poe-finer-search-video-showcase.gif)
