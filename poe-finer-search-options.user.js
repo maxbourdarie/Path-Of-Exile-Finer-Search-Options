@@ -18,6 +18,9 @@
             .finer-filtered{
                 position: relative;
             }
+            .finer-filterable:hover {
+                background: rgba(255, 255, 255, 0.2);
+            }
             .finer-filtered-overlay {
                 z-index: -1;
                 position: absolute;
