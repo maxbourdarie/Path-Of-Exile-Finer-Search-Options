@@ -21,3 +21,11 @@ It extends what the "Filter by item stats" button does but allows finer control 
 
 ## video showcase 
 ![](https://github.com/maxbourdarie/Path-Of-Exile-Finer-Search-Options/blob/master/images/Poe-finer-search-video-showcase.gif)
+
+### what's next
+* a 1-click button somewhere in the page that adds "common" filters to the main "and" group (most probably pseudo total life, tri res)
+* 1-clicks for the common mods separately (+movement speed cause thats necessary on almost any boots)
+* "more life !" button that increases the min life requirement by 10/ creates a life requirement if none exists
+* "auto fill my resists filters" feature : 
+  * "i currently have" \[input\] (fire/cold/lightning) res and \[input\] gear slots left to cap them
+  * => adds the corresponding minimum values to the resist requirements, evenly split between the amount of gear pieces wanted
