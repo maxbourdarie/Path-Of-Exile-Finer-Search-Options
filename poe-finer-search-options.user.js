@@ -121,7 +121,7 @@
         if(ISG) ISG.selectFilter(newFilter);
         else VueElem.$store.commit("pushStatGroup", { type: filterType, filters: [newFilter]});
 
-        VueElem.$root.$refs.toastr.Add({ msg: VueElem.translate(`the stat ${_statHash} has been ${_and ? `added to`:`removed from`} your stat filters.`), progressbar: !1, timeout: 2 })
+        VueElem.$root.$refs.toastr.Add({ msg: VueElem.translate(`the stat ${_statHash} has been ${_and ? `added to`:`removed from`} your stat filters.`), progressbar: !1, timeout: 3e3 })
         VueElem.$root.save(!0);
         ItemResultPanelVueItem().search();
     }
