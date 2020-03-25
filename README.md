@@ -6,7 +6,7 @@ It extends what the "Filter by item stats" button does but allows finer control 
 
 *original "filter by item stats button"*
 ![](https://github.com/maxbourdarie/Path-Of-Exile-Finer-Search-Options/blob/master/images/filter-by-item-stats.png)
-*"filter by item stats" button result in the search filters*
+*result of clicking "filter by item stats" button in the search filters*
 ![](https://github.com/maxbourdarie/Path-Of-Exile-Finer-Search-Options/blob/master/images/filter-by-item-stats-result.png)
 
 ## After installing, by hovering on an item, you can : 
