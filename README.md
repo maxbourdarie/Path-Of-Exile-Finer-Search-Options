@@ -4,28 +4,29 @@ It extends what the "Filter by item stats" button does but allows finer control 
 
 
 ## Prerequisites
-## Installation
-1. You need userScript manager extension to use this script. 
+### 1. You need userScript manager extension to use this script. 
 
 For firefox:
 install [Greasemonkey](https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/)
 
-for chrome, Microsoft Edge, Safari, Opera, Firefox:
+For chrome, Microsoft Edge, Safari, Opera, Firefox:
 install [Tampermonkey](https://www.tampermonkey.net)
 
-2. then you can [Install PoEFSO](https://github.com/maxbourdarie/Path-Of-Exile-Finer-Search-Options/raw/master/poe-finer-search-options.user.js) itself.
+### 2. then you can [Install PoEFSO](https://github.com/maxbourdarie/Path-Of-Exile-Finer-Search-Options/raw/master/poe-finer-search-options.user.js) itself.
 
-3. Use Compact mode on PoE Offical Trade  
+### 3. Use Compact mode on PoE Offical Trade  
 ![](https://i.imgur.com/6Ro8Jts.png)
 
 
+### Before/After
 
-*original "filter by item stats button"*
-![](https://github.com/maxbourdarie/Path-Of-Exile-Finer-Search-Options/blob/master/images/filter-by-item-stats.png)
-*result of clicking "filter by item stats" button in the search filters*
-![](https://github.com/maxbourdarie/Path-Of-Exile-Finer-Search-Options/blob/master/images/filter-by-item-stats-result.png)
+#### Before
+![](https://github.com/maxbourdarie/Path-Of-Exile-Finer-Search-Options/blob/master/images/filter-by-item-stats.png)*original "filter by item stats button"*
 
-## After installing, by hovering on an item, you can : 
+
+![](https://github.com/maxbourdarie/Path-Of-Exile-Finer-Search-Options/blob/master/images/filter-by-item-stats-result.png)*result of clicking "filter by item stats" button in the search filters*
+
+#### After installing, by hovering on an item, you can : 
 
 * easily see what mods are already present in your "and" filter groups (highlighted in green)
 ![](https://github.com/maxbourdarie/Path-Of-Exile-Finer-Search-Options/blob/master/images/finer-search-filtered-stat.png)
