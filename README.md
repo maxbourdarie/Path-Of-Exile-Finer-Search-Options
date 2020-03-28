@@ -2,6 +2,8 @@
 Poe Finer Search Options is a userScript enhancing the official Path of exile [trade](https://www.pathofexile.com/trade) website by adding ability to include/excluse any item mod directly from a search result list. That you dont have to go to filter option back and forth.  
 It extends what the "Filter by item stats" button does but allows finer control over what it offers.
 
+*Showcase*  
+![](https://github.com/maxbourdarie/Path-Of-Exile-Finer-Search-Options/blob/master/images/Poe-finer-search-video-showcase.gif)
 
 ## Prerequisites
 ### 1. You need userScript manager extension to use this script. 
@@ -21,10 +23,11 @@ install [Tampermonkey](https://www.tampermonkey.net)
 ### Before/After
 
 #### Before
-![](https://github.com/maxbourdarie/Path-Of-Exile-Finer-Search-Options/blob/master/images/filter-by-item-stats.png)*original "filter by item stats button"*
+*original "filter by item stats button"*  
+![](https://github.com/maxbourdarie/Path-Of-Exile-Finer-Search-Options/blob/master/images/filter-by-item-stats.png)
 
-
-![](https://github.com/maxbourdarie/Path-Of-Exile-Finer-Search-Options/blob/master/images/filter-by-item-stats-result.png)*result of clicking "filter by item stats" button in the search filters*
+*result of clicking "filter by item stats" button in the search filters*  
+![](https://github.com/maxbourdarie/Path-Of-Exile-Finer-Search-Options/blob/master/images/filter-by-item-stats-result.png)
 
 #### After installing, by hovering on an item, you can : 
 
@@ -36,8 +39,8 @@ install [Tampermonkey](https://www.tampermonkey.net)
 ![](https://github.com/maxbourdarie/Path-Of-Exile-Finer-Search-Options/blob/master/images/finer-search-buttons.png)
 * automatically refresh your search when you add/remove a filter by clicking a button
 
-## video showcase 
-![](https://github.com/maxbourdarie/Path-Of-Exile-Finer-Search-Options/blob/master/images/Poe-finer-search-video-showcase.gif)
+## 
+
 
 ### what's next
 - [ ] a 1-click button somewhere in the page that adds "common" filters to the main "and" group (most probably pseudo total life, tri res)
