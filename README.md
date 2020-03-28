@@ -24,7 +24,7 @@ install [Tampermonkey](https://www.tampermonkey.net)
 
 ### Before
 *original "filter by item stats button"*  
-<img width="650px" src="https://github.com/maxbourdarie/Path-Of-Exile-Finer-Search-Options/blob/master/images/filter-by-item-stats.png">
+<img width="650px" src="https://i.imgur.com/qDm5lnz.png">
 
 *result of clicking "filter by item stats" button in the search filters*  
 <img width="650px" src="https://github.com/maxbourdarie/Path-Of-Exile-Finer-Search-Options/blob/master/images/filter-by-item-stats-result.png">
