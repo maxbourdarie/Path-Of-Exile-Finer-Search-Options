@@ -19,28 +19,34 @@ install [Tampermonkey](https://www.tampermonkey.net)
 ### 3. Use Compact mode on PoE Offical Trade  
 ![](https://i.imgur.com/6Ro8Jts.png)
 
+---
 
-### Before/After
 
-#### Before
+### Before
 *original "filter by item stats button"*  
-![](https://github.com/maxbourdarie/Path-Of-Exile-Finer-Search-Options/blob/master/images/filter-by-item-stats.png)
+<img width="650px" src="https://github.com/maxbourdarie/Path-Of-Exile-Finer-Search-Options/blob/master/images/filter-by-item-stats.png">
 
 *result of clicking "filter by item stats" button in the search filters*  
-![](https://github.com/maxbourdarie/Path-Of-Exile-Finer-Search-Options/blob/master/images/filter-by-item-stats-result.png)
+<img width="650px" src="https://github.com/maxbourdarie/Path-Of-Exile-Finer-Search-Options/blob/master/images/filter-by-item-stats-result.png">
 
-#### After installing, by hovering on an item, you can : 
 
-* easily see what mods are already present in your "and" filter groups (highlighted in green)
-![](https://github.com/maxbourdarie/Path-Of-Exile-Finer-Search-Options/blob/master/images/finer-search-filtered-stat.png)
-* access two new buttons "+" and "-" by hovering over any mod in the list
-  * clicking "+" adds the mod to the first (non default) "and" filter group in your search. If none exists, it creates it
-  * clicking "-" adds the mod to the first "not" filter group in your search. If none exists, it creates it
+### After
+
+### by hovering over any item mod, you got access to two new buttons "+" and "-"
 ![](https://github.com/maxbourdarie/Path-Of-Exile-Finer-Search-Options/blob/master/images/finer-search-buttons.png)
-* automatically refresh your search when you add/remove a filter by clicking a button
 
+#### clicking "+" adds the mod to [AND] filter group. If none exists, it will create one.
+#### clicking "-" adds the mod to [NOT] filter group in your search. If none exists, it will create one.
+
+
+
+
+* your search refreshes itself when you add/remove a filter
+https://github.com/maxbourdarie/Path-Of-Exile-Finer-Search-Options/blob/master/images/filter-by-item-stats-result.png
 ## 
 
+*easily see what mods are already present in your "and" filter groups (highlighted in green)*
+![](https://github.com/maxbourdarie/Path-Of-Exile-Finer-Search-Options/blob/master/images/finer-search-filtered-stat.png)
 
 ### what's next
 - [ ] a 1-click button somewhere in the page that adds "common" filters to the main "and" group (most probably pseudo total life, tri res)
