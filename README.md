@@ -37,16 +37,12 @@ install [Tampermonkey](https://www.tampermonkey.net)
 
 #### clicking "+" adds the mod to [AND] filter group. If none exists, it will create one.
 #### clicking "-" adds the mod to [NOT] filter group in your search. If none exists, it will create one.
+#### your search refreshes itself when you add/remove a filter
 
-
-
-
-* your search refreshes itself when you add/remove a filter
-https://github.com/maxbourdarie/Path-Of-Exile-Finer-Search-Options/blob/master/images/filter-by-item-stats-result.png
-## 
-
-*easily see what mods are already present in your "and" filter groups (highlighted in green)*
+*easily see what mods are already present in your [AND] filter groups (highlighted in green)*
 ![](https://github.com/maxbourdarie/Path-Of-Exile-Finer-Search-Options/blob/master/images/finer-search-filtered-stat.png)
+
+---
 
 ### what's next
 - [ ] a 1-click button somewhere in the page that adds "common" filters to the main "and" group (most probably pseudo total life, tri res)
