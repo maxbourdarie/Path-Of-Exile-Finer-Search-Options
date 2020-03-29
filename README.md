@@ -32,7 +32,7 @@ install [Tampermonkey](https://www.tampermonkey.net)
 
 ### After
 
-### by hovering over any item mod, you got access to two new buttons "+" and "-"
+#### By hovering over any item mod, you got access to two new buttons "+" and "-"
 ![](https://github.com/maxbourdarie/Path-Of-Exile-Finer-Search-Options/blob/master/images/finer-search-buttons.png)
 
 #### clicking "+" adds the mod to [AND] filter group. If none exists, it will create one.
@@ -45,7 +45,7 @@ install [Tampermonkey](https://www.tampermonkey.net)
 ---
 
 ### what's next
-- [ ] a 1-click button somewhere in the page that adds "common" filters to the main "and" group (most probably pseudo total life, tri res)
+- [ ] a 1-click button somewhere in the page that adds "common" filters to the main [AND] group (most probably pseudo total life, tri res)
 - [ ] 1-clicks for the common mods separately (+movement speed cause thats necessary on almost any boots)
 - [ ] "more life !" button that increases the min life requirement by 10/ creates a life requirement if none exists
 - [ ] 1-click poorman's max chaos value (5c default) , "more"/"less" buttons for easy adjustment
