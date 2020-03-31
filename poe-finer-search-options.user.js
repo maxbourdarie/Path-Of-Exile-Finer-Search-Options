@@ -41,6 +41,9 @@
             #rmvFilter{
                 background: rgba(93, 2, 2, 0.75);
             }
+            #btns-finer{
+                left:auto;
+            }
         </style>
     `);
     const filteredDiv = () => $(`<div class="finer-filtered-overlay"></div>`);
