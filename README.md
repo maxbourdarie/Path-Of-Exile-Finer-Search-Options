@@ -16,7 +16,8 @@ install [Tampermonkey](https://www.tampermonkey.net)
 
 ### 2. then you can [Install PoEFSO](https://github.com/maxbourdarie/Path-Of-Exile-Finer-Search-Options/raw/master/poe-finer-search-options.user.js) itself.
 
-### 3. Use Compact mode on PoE Offical Trade  
+### 3. The script was developped for Compact mode on PoE Offical Trade
+(if you are using a different mode and things do not work as intended feel free to open a bug report)
 ![](https://i.imgur.com/6Ro8Jts.png)
 
 ---
