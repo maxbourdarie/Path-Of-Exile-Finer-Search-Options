@@ -33,6 +33,7 @@ install [Tampermonkey](https://www.tampermonkey.net)
 
 ### After
 
+### 1.0.x
 #### By hovering over any item mod, you got access to two new buttons "+" and "-"
 ![](https://github.com/maxbourdarie/Path-Of-Exile-Finer-Search-Options/blob/master/images/finer-search-buttons.png)
 
@@ -40,15 +41,26 @@ install [Tampermonkey](https://www.tampermonkey.net)
 #### clicking "-" adds the mod to [NOT] filter group. If none exists, it will create one.
 #### your search refreshes itself when you add/remove a filter
 
-*easily see what mods are already present in your [AND] filter groups (highlighted in green)*
+*you can also easily see what mods are already present in your [AND] filter groups (highlighted in green)*
 ![](https://github.com/maxbourdarie/Path-Of-Exile-Finer-Search-Options/blob/master/images/finer-search-filtered-stat.png)
+
+### 1.1.x
+#### Add the most common modifiers directly from anywhere in the page thanks to new global buttons
+* mods available :
+  * (pseudo) Life + (pseudo) all resitances (one button, 4 mods added)
+  * (pseudo) Life
+  * (pseudo) \[Fire, Cold, Lightning\] resistance (individually)
+  * Movement speed
+ 
+#### adjust these values by clicking the +/-
+* if no filter exists, it creates it
+  * if a filter already exists, "+" adds 10 to the min requirement, "-" removes 10 from it
+  
+#### when you click a button, your search refreshes
 
 ---
 
 ### what's next
-- [ ] a 1-click button somewhere in the page that adds "common" filters to the main [AND] group (most probably pseudo total life, tri res)
-- [ ] 1-clicks for the common mods separately (+movement speed cause thats necessary on almost any boots)
-- [ ] "more life !" button that increases the min life requirement by 10/ creates a life requirement if none exists
 - [ ] 1-click poorman's max chaos value (5c default) , "more"/"less" buttons for easy adjustment
 - [ ] "auto fill my resists filters" feature : 
   - [ ] "i currently have" \[input\] (fire/cold/lightning) res and \[input\] gear slots left to cap them
