@@ -1,5 +1,5 @@
 # Path-Of-Exile-Finer-Search-Options
-Poe Finer Search Options is a userScript enhancing the official Path of exile [trade](https://www.pathofexile.com/trade) website by adding ability to include/excluse any item mod directly from a search result list. That you dont have to go to filter option back and forth.  
+Poe Finer Search Options is a userScript enhancing the official Path of exile [trade](https://www.pathofexile.com/trade) website by adding ability to include/excluse any item mod directly from a search result list so that you dont have to go to filter option back and forth.  
 It extends what the "Filter by item stats" button does but allows finer control over what it offers.
 
 *Showcase*  
