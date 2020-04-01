@@ -47,14 +47,17 @@ install [Tampermonkey](https://www.tampermonkey.net)
 ### 1.1.x
 #### Add the most common modifiers directly from anywhere in the page thanks to new global buttons
 * mods available :
-  * (pseudo) Life + (pseudo) all resitances (one button, 4 mods added)
+  * (pseudo) Life + (pseudo) \[fire/cold/lightning\] resitances (one button, 4 mods added)
+  * (pseudo) all resists
   * (pseudo) Life
   * (pseudo) \[Fire, Cold, Lightning\] resistance (individually)
   * Movement speed
  
-#### adjust these values by clicking the +/-
-* if no filter exists, it creates it
-  * if a filter already exists, "+" adds 10 to the min requirement, "-" removes 10 from it
+#### adjust minimum requirement by clicking the +/- buttons
+* "+" increases the minimum requirement by 10
+  * if no filter exists for that stat, it creates it instead
+* "-" decreases the minimum requirement by 10
+  * if the filter requirement is already 0, it removes it instead
   
 #### when you click a button, your search refreshes
 
