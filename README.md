@@ -46,6 +46,7 @@ install [Tampermonkey](https://www.tampermonkey.net)
 
 ### 1.1.x
 #### Add the most common modifiers directly from anywhere in the page thanks to new global buttons
+![](https://github.com/maxbourdarie/Path-Of-Exile-Finer-Search-Options/blob/master/images/filter-global.png)
 * mods available :
   * (pseudo) Life + (pseudo) \[fire/cold/lightning\] resitances (one button, 4 mods added)
   * (pseudo) all resists
