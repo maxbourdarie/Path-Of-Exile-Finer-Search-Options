@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Poe trade finer-search-options
 // @namespace    http://tampermonkey.net/
-// @version      1.1.1
+// @version      1.1.2
 // @description  enables finer search options in Path of exile official trade site, allowing filtering in/out mods directly from the current search result list
 // @author       Maxime B
 // @match        https://www.pathofexile.com/trade
@@ -149,6 +149,7 @@
 
     const addPseudoMods = (hashes,more) => {
         const ISG = ItemSearchGroupsVueItems("and").find(e => e.index === 0);
+        let reload = false;
         hashes.forEach(hash => {
             const reHashed = `pseudo.pseudo_${modMap[hash]}`;
             const currentMod = ISG.filters.find(e => e.id === reHashed);
@@ -159,14 +160,17 @@
 
                 if(currentMin || more) ISG.updateFilter(modIndex,{ min: currentMin + (more ? 10 : -10) });
                 else ISG.removeFilter(modIndex);
+                reload=true;
             }
-            else {
+            else if(more){
                 ISG.selectFilter(createFilter(reHashed));
+                reload=true;
             }
         });
-        window.app.save(!0);
-//         ItemResultPanelVueItem().search();
-        $(".btn.search-btn").click();
+        if(reload){
+            window.app.save(!0);
+            $(".btn.search-btn").click();
+        }
     }
 
     const addButtons = (e,ctx) =>$(ctx).hasClass("finer-filterable") && $(ctx).append(buttonsSpan);
