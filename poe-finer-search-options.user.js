@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Poe trade finer-search-options
 // @namespace    http://tampermonkey.net/
-// @version      1.1.2
+// @version      1.1.3
 // @description  enables finer search options in Path of exile official trade site, allowing filtering in/out mods directly from the current search result list
 // @author       Maxime B
 // @match        https://www.pathofexile.com/trade
@@ -17,62 +17,84 @@
     //---------HTML---------//
     const scriptStyle=$(`
         <style>
-            #finer-search-global{ color: white;    height: 210px;    width: 175px;    background: #2f2f2f;    position: fixed;    right: 10px;    top: 50px;    z-index: 1000 }
-            #finer-search-global-title{ font-weight: bold;    margin: 40px; }
             #addFilter{ background: rgba(2,  93, 34, 0.75); }
             #rmvFilter{ background: rgba(93, 2,  2,  0.75); }
             #btns-finer{ left: auto; }
-            .finer-global-btn{ background: #636363;    outline: solid 1px rgb(80, 80, 80);    margin: 10px 2px;    padding: 0 5px; }
-            .finer-global-btn-pm { float: right;    padding: 0 2px; }
-            .finer-global-btn-pm.minus { background: red;    padding: 0 5px; }
-            .finer-global-btn-pm.plus { background: green;    margin-left:5px; }
+
             .finer-filterable:hover { background: rgba(255, 255, 255, 0.2); }
             .finer-filtered{ position: relative; }
             .finer-filtered-overlay { z-index: -1;    position: absolute;    width: 100%;    height: 100%;    background: rgba(0, 136, 0, .25);    top: 0; }
             .btn-finer-search { padding: 0 10px;    color: white;    outline: solid 1px grey;}
             .hand{ cursor: pointer; }
+
+            #finer-search-global-toggle-collapsed {
+                position: absolute;
+                right: 5px;
+                top: 5px;
+                width: 15px;
+                height: 15px;
+                background: rgb(56, 35, 4);
+                cursor:pointer;
+            }
+            .upArr::before{ content:"^";    position: absolute;    top: -1px;    left: 1px; }
+            .dnArr::before{ content:"v";    position: absolute;    left: 3px;    top: -5px; }
+
+            #finer-search-global{ color: #fff;    height: max-content;    width: 12em;    background: rgba(0, 0, 0, 0.75);    position: fixed;    right: 10px;    top: 50px;    z-index: 1001;    font-size:130%;    user-select:none; }
+            #finer-search-global-title{ outline: 1px solid rgb(138, 86, 9);    background-color: rgb(90, 56, 6);    width: inherit;    display: block;    text-align: center;    text-transform: capitalize;    font-size: 115%;    cursor: move; }
+
+            .finer-global-btn{ background: rgb(15, 48, 77);    outline: solid 1px rgb(76, 76, 125);    margin-top: 10px;    padding: 1px 1px 1px 0.3em;     display: grid;    grid-gap:3px;    grid-template-areas: "mod-name mod-minus mod-plus";    grid-template-columns: auto 1em 1em;    text-transform: capitalize; }
+            .finer-global-btn-pm { height: 1em;    border: 1px inset rgba(255, 255, 255, 0.445);    align-self: center;    text-align: cell;    display: flex;    justify-content: center;    align-items: center;    color: #fff;    background-color: rgb(77, 57, 14); }
+            .finer-global-btn-pm.mod-name { text-align: cell;    grid-area: mod-name; }
+            .finer-global-btn-pm.plus { background: rgb(29, 139, 53);     grid-area: mod-plus; }
+            .finer-global-btn-pm.minus { background: rgb(139, 28, 28);    grid-area: mod-minus; }
+            .finer-global-btn-pm.plus:hover, .finer-global-btn-pm.minus:hover, { filter: brightness(140%); }
+            #finer-search-global-toggle-collapsed:hover { filter: brightness(80%); }
         </style>
     `);
     const globalFiner = $(`
+
         <div id="finer-search-global">
             <span id="finer-search-global-title">add to filters</span>
-            <div class="finer-global-btn" data-type="life,cold,fire,ligt">
-                all res & life
-                <span title="increase min value by 10" class="finer-global-btn-pm plus hand">+</span>
-                <span title="decrease min value by 10" class="finer-global-btn-pm minus hand">-</span>
-            </div>
-            <div class="finer-global-btn" data-type="allR">
-                all resistances
-                <span title="increase min value by 10" class="finer-global-btn-pm plus hand">+</span>
-                <span title="decrease min value by 10" class="finer-global-btn-pm minus hand">-</span>
-            </div>
-            <div class="finer-global-btn" data-type="life">
-                life
-                <span title="increase min value by 10" class="finer-global-btn-pm plus hand">+</span>
-                <span title="decrease min value by 10" class="finer-global-btn-pm minus hand">-</span>
-            </div>
-            <div class="finer-global-btn" data-type="cold">
-                cold res
-                <span title="increase min value by 10" class="finer-global-btn-pm plus hand">+</span>
-                <span title="decrease min value by 10" class="finer-global-btn-pm minus hand">-</span>
-            </div>
-            <div class="finer-global-btn" data-type="fire">
-                fire res
-                <span title="increase min value by 10" class="finer-global-btn-pm plus hand">+</span>
-                <span title="decrease min value by 10" class="finer-global-btn-pm minus hand">-</span>
-            </div>
-            <div class="finer-global-btn" data-type="ligt">
-                lightning res
-                <span title="increase min value by 10" class="finer-global-btn-pm plus hand">+</span>
-                <span title="decrease min value by 10" class="finer-global-btn-pm minus hand">-</span>
-            </div>
-            <div class="finer-global-btn" data-type="move">
-                movement speed
-                <span title="increase min value by 10" class="finer-global-btn-pm plus hand">+</span>
-                <span title="decrease min value by 10" class="finer-global-btn-pm minus hand">-</span>
+            <div id="finer-search-global-toggle-collapsed" class="upArr"></div>
+            <div class="finer-search-global-body">
+                <div data-type="life,cold,fire,ligt" class="finer-global-btn">
+                    <span class="mod-name">all res & life</span>
+                    <span title="increase min value by 10" class="finer-global-btn-pm plus  hand">+</span>
+                    <span title="decrease min value by 10" class="finer-global-btn-pm minus hand">-</span>
+                </div>
+                <div data-type="allR" class="finer-global-btn">
+                    <span class="mod-name">all resistances</span>
+                    <span title="increase min value by 10" class="finer-global-btn-pm plus  hand">+</span>
+                    <span title="decrease min value by 10" class="finer-global-btn-pm minus hand">-</span>
+                </div>
+                <div data-type="life" class="finer-global-btn">
+                    <span class="mod-name">life</span>
+                    <span title="increase min value by 10" class="finer-global-btn-pm plus  hand">+</span>
+                    <span title="decrease min value by 10" class="finer-global-btn-pm minus hand">-</span>
+                </div>
+                <div data-type="cold" class="finer-global-btn">
+                    <span class="mod-name">cold res</span>
+                    <span title="increase min value by 10" class="finer-global-btn-pm plus  hand">+</span>
+                    <span title="decrease min value by 10" class="finer-global-btn-pm minus hand">-</span>
+                </div>
+                <div data-type="fire" class="finer-global-btn">
+                    <span class="mod-name">fire res</span>
+                    <span title="increase min value by 10" class="finer-global-btn-pm plus  hand">+</span>
+                    <span title="decrease min value by 10" class="finer-global-btn-pm minus hand">-</span>
+                </div>
+                <div data-type="ligt" class="finer-global-btn">
+                    <span class="mod-name">lightning res</span>
+                    <span title="increase min value by 10" class="finer-global-btn-pm plus hand">+</span>
+                    <span title="decrease min value by 10" class="finer-global-btn-pm minus hand">-</span>
+                </div>
+                <div data-type="move" class="finer-global-btn">
+                    <span class="mod-name">movement speed</span>
+                    <span title="increase min value by 10" class="finer-global-btn-pm plus hand" >+</span>
+                    <span title="decrease min value by 10" class="finer-global-btn-pm minus hand" >-</span>
+                </div>
             </div>
         </div>
-    `);
+     `);
     const filteredDiv = () => $(`<div class="finer-filtered-overlay"></div>`);
     const buttonsSpan = $(`
         <span class="lc l" id="btns-finer">
@@ -101,6 +123,9 @@
     $("body").append(scriptStyle);//append css to body
     $("#trade").append(globalFiner);//append global buttons to #trade
 
+    let $dragging = null;
+    let offset = null;
+
     //document listeners
     $(document)
         //-----------step 1 : hover a result row (i.e. an item) => check if any mod is already in search and dispatch action classes accordingly
@@ -114,9 +139,48 @@
         .on('click','#addFilter', function(e){ addOrRemoveFilter(e, true , this) })
         .on('click','#rmvFilter', function(e){ addOrRemoveFilter(e, false, this) })
         //-----------step 4 : on button click in the global div, add the corresponding mods to the search
-        .on('click','#finer-search-global > .finer-global-btn > span', function(e){
-            addPseudoMods([...$(e.target).parent().data("type").split(',')], $(e.target).hasClass("plus"))
-        })
+        .on('click','#finer-search-global > .finer-search-global-body > .finer-global-btn > .finer-global-btn-pm', function(e){ addPseudoMods(e) })
+        .on('click','#finer-search-global-toggle-collapsed', function(e){ toggleFiltersVisibility(e) })
+        //-----------step 5 : on click in the global div title, toggle draggable
+        .on("mousedown", "#finer-search-global-title", function (e) { handleDragMouseDown(e) })
+        .on("mouseup", function (e) { clearDragVars() })
+        .on("mousemove", 'body', function(e) { handleDragMove(e) })
+
+    const clearDragVars = () => {
+        $dragging = null ;
+        offset = null;
+    }
+
+    const handleDragMouseDown = e =>{
+        $dragging = $(e.target).parent();
+        const tmpoff = $dragging.offset();
+        offset = {
+            xoff: e.pageX - tmpoff.left,
+            yoff: e.pageY - tmpoff.top
+        }
+    }
+
+    const handleDragMove = e =>{
+        if ($dragging){
+            $dragging.offset({
+                top: e.pageY- offset.yoff,
+                left: e.pageX- offset.xoff
+            });
+        }
+    }
+
+    const toggleFiltersVisibility = e => {
+        const toggler = $(e.target);
+        const bod = toggler.parent().children('.finer-search-global-body');
+        if(bod.hasClass('hidden')){
+            bod.removeClass('hidden');
+            toggler.addClass('upArr').removeClass('dnArr');
+        }
+        else {
+            bod.addClass('hidden');
+            toggler.addClass('dnArr').removeClass('upArr');
+        }
+    };
 
     const checkFilters = (e, ctx) => {
         const _row = $(ctx);
@@ -145,9 +209,10 @@
         $(_row).addClass("finer-processed");
     }
 
+    const addPseudoMods = e => {
+        const hashes = [...$(e.target).parent().data("type").split(',')];
+        const more = $(e.target).hasClass("plus");
 
-
-    const addPseudoMods = (hashes,more) => {
         const ISG = ItemSearchGroupsVueItems("and").find(e => e.index === 0);
         let reload = false;
         hashes.forEach(hash => {
