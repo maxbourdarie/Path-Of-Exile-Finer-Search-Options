@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Poe trade finer-search-options
 // @namespace    http://tampermonkey.net/
-// @version      1.1.5
+// @version      1.1.6
 // @description  enables finer search options in Path of exile official trade site, allowing filtering in/out mods directly from the current search result list
 // @author       Maxime B
 // @match        https://www.pathofexile.com/trade
@@ -25,9 +25,9 @@
             .finer-filtered-overlay { z-index: -1;    position: absolute;    width: 100%;    height: 100%;    background: rgba(0, 136, 0, .25);    top: 0; }
             .btn-finer-search { padding: 0 10px;    color: white;    outline: solid 1px grey;}
             .hand{ cursor: pointer; }
-            #finer-search-global-toggle-collapsed { position: absolute;    right: 5px;    top: 5px;    width: 15px;    height: 15px;    background: rgb(56, 35, 4);    cursor:pointer; }
-            .upArr::before{ content:"^";    position: absolute;    top: -1px;    left: 1px; }
-            .dnArr::before{ content:"v";    position: absolute;    left: 3px;    top: -5px; }
+            .finer-search-global-toggle-collapsed { position: absolute;    right: 5px;    top: 5px;    width: 15px;    height: 15px;    background: rgb(56, 35, 4);    cursor:pointer; }
+            .upArr::before{ content:"v";    position: absolute;    font-size: 13px;    top: -1px;    left: 3px; }
+            .dnArr::before{ content:">";    position: absolute;    font-size: 12px;    left: 2px;    top: -1px; }
             #finer-search-global{ color: #fff;    height: max-content;    width: 12em;    background: rgba(0, 0, 0, 0.75);    position: fixed;    right: 10px;    top: 50px;    z-index: 1001;    font-size:130%;    user-select:none; }
             #finer-search-global-title{ outline: 1px solid rgb(138, 86, 9);    background-color: rgb(90, 56, 6);    width: inherit;    display: block;    text-align: center;    text-transform: capitalize;    font-size: 115%;    cursor: move; }
             .finer-global-btn{ background: rgb(15, 48, 77);    outline: solid 1px rgb(76, 76, 125);    margin-top: 10px;    padding: 1px 1px 1px 0.3em;     display: grid;    grid-gap:3px;    grid-template-areas: "mod-name mod-minus mod-plus";    grid-template-columns: auto 1em 1em;    text-transform: capitalize; }
@@ -36,49 +36,69 @@
             .finer-global-btn-pm.plus { background: rgb(29, 139, 53);     grid-area: mod-plus; }
             .finer-global-btn-pm.minus { background: rgb(139, 28, 28);    grid-area: mod-minus; }
             .finer-global-btn-pm.plus:hover, .finer-global-btn-pm.minus:hover { filter: brightness(140%); }
-            #finer-search-global-toggle-collapsed:hover { filter: brightness(80%); }
+            .finer-search-global-toggle-collapsed:hover { filter: brightness(80%); }
+            .finer-search-global-section-title { text-align: center;    display: block; }
+            .finer-search-global-section { margin-top: 10px;    padding-top: 5px;    position: relative; }
+            .finer-search-global-section + .finer-search-global-section { border-top: solid 1px; }
         </style>
     `);
     const globalFiner = $(`
 
         <div id="finer-search-global">
             <span id="finer-search-global-title">add to filters</span>
-            <div id="finer-search-global-toggle-collapsed" class="upArr"></div>
-            <div class="finer-search-global-body">
-                <div data-type="life,cold,fire,ligt" class="finer-global-btn">
-                    <span class="mod-name">all res & life</span>
-                    <span title="increase min value by 10" class="finer-global-btn-pm plus  hand">+</span>
-                    <span title="decrease min value by 10" class="finer-global-btn-pm minus hand">-</span>
+            <div class="finer-search-global-toggle-collapsed dnArr"></div>
+            <div class="finer-search-global-body hidden">
+                <div class="finer-search-global-section mods">
+                    <span class="finer-search-global-section-title">- Modifiers -</span>
+                    <div class="finer-search-global-toggle-collapsed dnArr"></div>
+                    <div class="finer-search-global-section-body hidden">
+                        <div data-type="life,cold,fire,ligt" class="finer-global-btn">
+                            <span class="mod-name">all res & life</span>
+                            <span title="increase min value by 10" class="finer-global-btn-pm plus  hand">+</span>
+                            <span title="decrease min value by 10" class="finer-global-btn-pm minus hand">-</span>
+                        </div>
+                        <div data-type="allR" class="finer-global-btn">
+                            <span class="mod-name">all resistances</span>
+                            <span title="increase min value by 10" class="finer-global-btn-pm plus  hand">+</span>
+                            <span title="decrease min value by 10" class="finer-global-btn-pm minus hand">-</span>
+                        </div>
+                        <div data-type="life" class="finer-global-btn">
+                            <span class="mod-name">life</span>
+                            <span title="increase min value by 10" class="finer-global-btn-pm plus  hand">+</span>
+                            <span title="decrease min value by 10" class="finer-global-btn-pm minus hand">-</span>
+                        </div>
+                        <div data-type="cold" class="finer-global-btn">
+                            <span class="mod-name">cold res</span>
+                            <span title="increase min value by 10" class="finer-global-btn-pm plus  hand">+</span>
+                            <span title="decrease min value by 10" class="finer-global-btn-pm minus hand">-</span>
+                        </div>
+                        <div data-type="fire" class="finer-global-btn">
+                            <span class="mod-name">fire res</span>
+                            <span title="increase min value by 10" class="finer-global-btn-pm plus  hand">+</span>
+                            <span title="decrease min value by 10" class="finer-global-btn-pm minus hand">-</span>
+                        </div>
+                        <div data-type="ligt" class="finer-global-btn">
+                            <span class="mod-name">lightning res</span>
+                            <span title="increase min value by 10" class="finer-global-btn-pm plus hand">+</span>
+                            <span title="decrease min value by 10" class="finer-global-btn-pm minus hand">-</span>
+                        </div>
+                        <div data-type="move" class="finer-global-btn">
+                            <span class="mod-name">movement speed</span>
+                            <span title="increase min value by 10" class="finer-global-btn-pm plus hand" >+</span>
+                            <span title="decrease min value by 10" class="finer-global-btn-pm minus hand" >-</span>
+                        </div>
+                    </div>
                 </div>
-                <div data-type="allR" class="finer-global-btn">
-                    <span class="mod-name">all resistances</span>
-                    <span title="increase min value by 10" class="finer-global-btn-pm plus  hand">+</span>
-                    <span title="decrease min value by 10" class="finer-global-btn-pm minus hand">-</span>
-                </div>
-                <div data-type="life" class="finer-global-btn">
-                    <span class="mod-name">life</span>
-                    <span title="increase min value by 10" class="finer-global-btn-pm plus  hand">+</span>
-                    <span title="decrease min value by 10" class="finer-global-btn-pm minus hand">-</span>
-                </div>
-                <div data-type="cold" class="finer-global-btn">
-                    <span class="mod-name">cold res</span>
-                    <span title="increase min value by 10" class="finer-global-btn-pm plus  hand">+</span>
-                    <span title="decrease min value by 10" class="finer-global-btn-pm minus hand">-</span>
-                </div>
-                <div data-type="fire" class="finer-global-btn">
-                    <span class="mod-name">fire res</span>
-                    <span title="increase min value by 10" class="finer-global-btn-pm plus  hand">+</span>
-                    <span title="decrease min value by 10" class="finer-global-btn-pm minus hand">-</span>
-                </div>
-                <div data-type="ligt" class="finer-global-btn">
-                    <span class="mod-name">lightning res</span>
-                    <span title="increase min value by 10" class="finer-global-btn-pm plus hand">+</span>
-                    <span title="decrease min value by 10" class="finer-global-btn-pm minus hand">-</span>
-                </div>
-                <div data-type="move" class="finer-global-btn">
-                    <span class="mod-name">movement speed</span>
-                    <span title="increase min value by 10" class="finer-global-btn-pm plus hand" >+</span>
-                    <span title="decrease min value by 10" class="finer-global-btn-pm minus hand" >-</span>
+                <div class="finer-search-global-section misc">
+                    <span class="finer-search-global-section-title">- Miscanellous -</span>
+                    <div class="finer-search-global-toggle-collapsed dnArr"></div>
+                    <div class="finer-search-global-section-body hidden">
+                        <div data-type="" class="finer-global-btn">
+                            <span class="mod-name">set Buyout limit</span>
+                            <span title="increase min value by 10" class="finer-global-btn-pm plus  hand">+</span>
+                            <span title="decrease min value by 10" class="finer-global-btn-pm minus hand">-</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -127,8 +147,9 @@
         .on('click','#addFilter', function(e){ addOrRemoveFilter(e, true , this) })
         .on('click','#rmvFilter', function(e){ addOrRemoveFilter(e, false, this) })
         //-----------step 4 : on button click in the global div, add the corresponding mods to the search
-        .on('click','#finer-search-global > .finer-search-global-body > .finer-global-btn > .finer-global-btn-pm', function(e){ addPseudoMods(e) })
-        .on('click','#finer-search-global-toggle-collapsed', function(e){ toggleFiltersVisibility(e) })
+        .on('click','#finer-search-global > .finer-search-global-body > .finer-search-global-section.mods > .finer-search-global-section-body > .finer-global-btn > .finer-global-btn-pm', function(e){ addPseudoMods(e) })
+        .on('click','#finer-search-global > .finer-search-global-body > .finer-search-global-section.misc > .finer-search-global-section-body > .finer-global-btn > .finer-global-btn-pm', function(e){ addCurrencyLimit(e) })
+        .on('click','.finer-search-global-toggle-collapsed', function(e){ toggleFiltersVisibility(e) })
         //-----------step 5 : on click in the global div title, toggle draggable
         .on("mousedown", "#finer-search-global-title", function (e) { handleDragMouseDown(e) })
         .on("mouseup", function (e) { clearDragVars() })
@@ -165,15 +186,10 @@
 
     const toggleFiltersVisibility = e => {
         const toggler = $(e.target);
-        const bod = toggler.parent().children('.finer-search-global-body');
-        if(bod.hasClass('hidden')){
-            bod.removeClass('hidden');
-            toggler.addClass('upArr').removeClass('dnArr');
-        }
-        else {
-            bod.addClass('hidden');
-            toggler.addClass('dnArr').removeClass('upArr');
-        }
+        toggler.toggleClass('dnArr').toggleClass('upArr');
+        toggler.parent().children('[class*="body"]')
+//         .animate( {height: "toggle"}, 500, 'easeInOutQuint' )
+        .toggleClass('hidden');
     };
 
     const checkFilters = (e, ctx) => {
@@ -231,6 +247,28 @@
             $(".btn.search-btn").click();
         }
     }
+
+    const addCurrencyLimit = e => {
+        const more = $(e.target).hasClass("plus");
+        const trade_filters = findVueItem(["item-search-panel", "item-filter-panel"]).$children.find(e => e.$vnode.key==="trade_filters")
+        const {
+            state:{
+                filters:{
+                    price:{
+                        max=0
+                    }={}
+                }={}
+            }={}
+        } = trade_filters;
+        const filter = more ?
+              {max:(max||4)+1}:
+              {max:max-1||null};
+        trade_filters.updateFilter(3,filter);
+        window.app.save(!0);
+        $(".btn.search-btn").click();
+    }
+
+
 
     const addButtons = (e,ctx) =>$(ctx).hasClass("finer-filterable") && $(ctx).append(buttonsSpan);
 
