@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Poe trade finer-search-options
 // @namespace    http://tampermonkey.net/
-// @version      1.1.3
+// @version      1.1.4
 // @description  enables finer search options in Path of exile official trade site, allowing filtering in/out mods directly from the current search result list
 // @author       Maxime B
 // @match        https://www.pathofexile.com/trade
@@ -143,6 +143,8 @@
         $dragging = $(e.target).parent();
         const tmpoff = $dragging.offset();
         offset = {
+            maxX:$(window).width()-$dragging.width(),
+            maxY:$(window).height()-$dragging.height(),
             xoff: e.pageX - tmpoff.left,
             yoff: e.pageY - tmpoff.top
         }
@@ -151,8 +153,8 @@
     const handleDragMove = e =>{
         if ($dragging){
             $dragging.offset({
-                top: e.pageY- offset.yoff,
-                left: e.pageX- offset.xoff
+                top: Math.max(0,Math.min(e.pageY- offset.yoff, offset.maxY)),
+                left: Math.max(0,Math.min(e.pageX- offset.xoff, offset.maxX))
             });
         }
     }
