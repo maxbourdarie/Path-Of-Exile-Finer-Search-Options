@@ -26,8 +26,8 @@
             .btn-finer-search { padding: 0 10px;    color: white;    outline: solid 1px grey;}
             .hand{ cursor: pointer; }
             .finer-search-global-toggle-collapsed { position: absolute;    right: 5px;    top: 5px;    width: 15px;    height: 15px;    background: rgb(56, 35, 4);    cursor:pointer; }
-            .upArr::before{ content:"v";    position: absolute;    font-size: 13px;    top: -1px;    left: 3px; }
-            .dnArr::before{ content:">";    position: absolute;    font-size: 12px;    left: 2px;    top: -1px; }
+            .upArr::before{ content:"\\25BE";    position: absolute;    font-size: 25px;    top: -10px;    left: -3px; }
+            .dnArr::before{ content:"\\25B8";    position: absolute;    font-size: 25px;    top: -10px;    left: -3px; }
             #finer-search-global{ color: #fff;    height: max-content;    width: 12em;    background: rgba(0, 0, 0, 0.75);    position: fixed;    right: 10px;    top: 50px;    z-index: 1001;    font-size:130%;    user-select:none; }
             #finer-search-global-title{ outline: 1px solid rgb(138, 86, 9);    background-color: rgb(90, 56, 6);    width: inherit;    display: block;    text-align: center;    text-transform: capitalize;    font-size: 115%;    cursor: move; }
             .finer-global-btn{ background: rgb(15, 48, 77);    outline: solid 1px rgb(76, 76, 125);    margin-top: 10px;    padding: 1px 1px 1px 0.3em;     display: grid;    grid-gap:3px;    grid-template-areas: "mod-name mod-minus mod-plus";    grid-template-columns: auto 1em 1em;    text-transform: capitalize; }
