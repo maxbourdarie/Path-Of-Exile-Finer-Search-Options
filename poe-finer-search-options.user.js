@@ -20,34 +20,22 @@
             #addFilter{ background: rgba(2,  93, 34, 0.75); }
             #rmvFilter{ background: rgba(93, 2,  2,  0.75); }
             #btns-finer{ left: auto; }
-
             .finer-filterable:hover { background: rgba(255, 255, 255, 0.2); }
             .finer-filtered{ position: relative; }
             .finer-filtered-overlay { z-index: -1;    position: absolute;    width: 100%;    height: 100%;    background: rgba(0, 136, 0, .25);    top: 0; }
             .btn-finer-search { padding: 0 10px;    color: white;    outline: solid 1px grey;}
             .hand{ cursor: pointer; }
-
-            #finer-search-global-toggle-collapsed {
-                position: absolute;
-                right: 5px;
-                top: 5px;
-                width: 15px;
-                height: 15px;
-                background: rgb(56, 35, 4);
-                cursor:pointer;
-            }
+            #finer-search-global-toggle-collapsed { position: absolute;    right: 5px;    top: 5px;    width: 15px;    height: 15px;    background: rgb(56, 35, 4);    cursor:pointer; }
             .upArr::before{ content:"^";    position: absolute;    top: -1px;    left: 1px; }
             .dnArr::before{ content:"v";    position: absolute;    left: 3px;    top: -5px; }
-
             #finer-search-global{ color: #fff;    height: max-content;    width: 12em;    background: rgba(0, 0, 0, 0.75);    position: fixed;    right: 10px;    top: 50px;    z-index: 1001;    font-size:130%;    user-select:none; }
             #finer-search-global-title{ outline: 1px solid rgb(138, 86, 9);    background-color: rgb(90, 56, 6);    width: inherit;    display: block;    text-align: center;    text-transform: capitalize;    font-size: 115%;    cursor: move; }
-
             .finer-global-btn{ background: rgb(15, 48, 77);    outline: solid 1px rgb(76, 76, 125);    margin-top: 10px;    padding: 1px 1px 1px 0.3em;     display: grid;    grid-gap:3px;    grid-template-areas: "mod-name mod-minus mod-plus";    grid-template-columns: auto 1em 1em;    text-transform: capitalize; }
             .finer-global-btn-pm { height: 1em;    border: 1px inset rgba(255, 255, 255, 0.445);    align-self: center;    text-align: cell;    display: flex;    justify-content: center;    align-items: center;    color: #fff;    background-color: rgb(77, 57, 14); }
             .finer-global-btn-pm.mod-name { text-align: cell;    grid-area: mod-name; }
             .finer-global-btn-pm.plus { background: rgb(29, 139, 53);     grid-area: mod-plus; }
             .finer-global-btn-pm.minus { background: rgb(139, 28, 28);    grid-area: mod-minus; }
-            .finer-global-btn-pm.plus:hover, .finer-global-btn-pm.minus:hover, { filter: brightness(140%); }
+            .finer-global-btn-pm.plus:hover, .finer-global-btn-pm.minus:hover { filter: brightness(140%); }
             #finer-search-global-toggle-collapsed:hover { filter: brightness(80%); }
         </style>
     `);
