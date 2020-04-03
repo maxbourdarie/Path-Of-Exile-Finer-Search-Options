@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Poe trade finer-search-options
 // @namespace    http://tampermonkey.net/
-// @version      1.1.4
+// @version      1.1.5
 // @description  enables finer search options in Path of exile official trade site, allowing filtering in/out mods directly from the current search result list
 // @author       Maxime B
 // @match        https://www.pathofexile.com/trade
@@ -133,6 +133,10 @@
         .on("mousedown", "#finer-search-global-title", function (e) { handleDragMouseDown(e) })
         .on("mouseup", function (e) { clearDragVars() })
         .on("mousemove", 'body', function(e) { handleDragMove(e) })
+
+    //fix for draggable going out of viewport when resizing
+    $(window)
+        .on('resize', function(e){ $('#finer-search-global').offset({ right: 10, top: 50 }) })
 
     const clearDragVars = () => {
         $dragging = null ;
