@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Poe trade finer-search-options
 // @namespace    http://tampermonkey.net/
-// @version      1.1.7
+// @version      1.1.8
 // @description  enables finer search options in Path of exile official trade site, allowing filtering in/out mods directly from the current search result list
 // @author       Maxime B
 // @match        https://www.pathofexile.com/trade
@@ -252,18 +252,12 @@
     const addCurrencyLimit = e => {
         const more = $(e.target).hasClass("plus");
         const trade_filters = findVueItem(["item-search-panel", "item-filter-panel"]).$children.find(e => e.$vnode.key==="trade_filters")
-        const {
-            state:{
-                filters:{
-                    price:{
-                        max=0
-                    }={}
-                }={}
-            }={}
-        } = trade_filters;
+        const { state:{ filters:{ price:{ max=0 }={} }={} }={} } = trade_filters;
         const filter = more ?
               {max:(max||4)+1}:
-              {max:max-1||null};
+              max ?
+                  {max:max-1||null}:
+                  {};
         trade_filters.updateFilter(3,filter);
         window.app.save(!0);
         $(".btn.search-btn").click();
