@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Poe trade finer-search-options
 // @namespace    http://tampermonkey.net/
-// @version      1.1.6
+// @version      1.1.7
 // @description  enables finer search options in Path of exile official trade site, allowing filtering in/out mods directly from the current search result list
 // @author       Maxime B
 // @match        https://www.pathofexile.com/trade
@@ -38,7 +38,8 @@
             .finer-global-btn-pm.plus:hover, .finer-global-btn-pm.minus:hover { filter: brightness(140%); }
             .finer-search-global-toggle-collapsed:hover { filter: brightness(80%); }
             .finer-search-global-section-title { text-align: center;    display: block; }
-            .finer-search-global-section { margin-top: 10px;    padding-top: 5px;    position: relative; }
+            .finer-search-global-section + .finer-search-global-section { margin-top: 5px; }
+            .finer-search-global-section { padding-top: 5px;    position: relative; }
             .finer-search-global-section + .finer-search-global-section { border-top: solid 1px; }
         </style>
     `);
