@@ -65,7 +65,4 @@ install [Tampermonkey](https://www.tampermonkey.net)
 ---
 
 ### what's next
-- [ ] 1-click poorman's max chaos value (5c default) , "more"/"less" buttons for easy adjustment
-- [ ] "auto fill my resists filters" feature : 
-  - [ ] "i currently have" \[input\] (fire/cold/lightning) res and \[input\] gear slots left to cap them
-  - [ ] => adds the corresponding minimum values to the resist requirements, evenly split between the amount of gear pieces wanted
+- [x] 1-click poorman's max chaos value (5c default) , "more"/"less" buttons for easy adjustment
